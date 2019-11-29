@@ -1184,16 +1184,17 @@ runScAnnotation <- function(dataPath, statPath, savePath = NULL,
     if(is.null(savePath)){
         savePath <- sataPath
     }
+    
+    if(!dir.exists(file.path(savePath, "figures/"))){
+        dir.create(file.path(savePath, "figures/"), recursive = T)
+    }
+    
     suppressWarnings( dataPath <- normalizePath(dataPath, "/") )
     suppressWarnings( statPath <- normalizePath(statPath, "/") )
     suppressWarnings( savePath <- normalizePath(savePath, "/") )
     results[["dataPath"]] <- dataPath
     results[["statPath"]] <- statPath
     results[["savePath"]] <- savePath
-
-    if(!dir.exists(file.path(savePath, "figures/"))){
-        dir.create(file.path(savePath, "figures/"), recursive = T)
-    }
 
     ## --------- filter data ---------
     message("[", Sys.time(), "] -----: cells and genes filtering")
