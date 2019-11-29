@@ -568,12 +568,12 @@ runScStatistics <- function(dataPath, savePath,
     message("[", Sys.time(), "] START: RUN scStatistics")
     # results <- as.list(environment())
 
-    suppressWarnings( dataPath <- normalizePath(dataPath, "/") )
-    suppressWarnings( savePath <- normalizePath(savePath, "/") )
-
     if(!dir.exists(file.path(savePath, "figures/"))){
         dir.create(file.path(savePath, "figures/"), recursive = T)
     }
+  
+    suppressWarnings( dataPath <- normalizePath(dataPath, "/") )
+    suppressWarnings( savePath <- normalizePath(savePath, "/") )
 
     message("[", Sys.time(), "] -----: data preparation")
     all <- prepareData(samplePath = dataPath,
