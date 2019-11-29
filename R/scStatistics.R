@@ -387,7 +387,11 @@ updateGeneM <- function(gene.manifest,
 
 genePropPlot <- function(gene.manifest, expr.frac){
     show.num = 100
-    gene.manifest <- gene.manifest[order(gene.manifest$bg.percent, decreasing = T), ]
+    if("bg.percent" %in% colnames(gene.manifest)){
+        gene.manifest <- gene.manifest[order(gene.manifest$bg.percent, decreasing = T), ]
+    }else{
+        gene.manifest <- gene.manifest[order(gene.manifest$prop.median, decreasing = T), ]
+    }
     gene.show <- head(gene.manifest$Symbol, show.num)
 
     rownames(gene.manifest) <- gene.manifest$Symbol
